@@ -1,0 +1,28 @@
+{
+ "generated": "2026-10-20 00:41:54.308897",
+ "last_tick": "2026-10-20 00:41:52.099708",
+ "last_bar": "2026-10-19 23:30:00",
+ "last_price": 9452.0,
+ "contract": "CRUDEOILM-19Nov2026-FUT",
+ "paper_start": "2026-10-20",
+ "open": null,
+ "trades": [],
+ "stats": {
+  "n": 0,
+  "wins": 0,
+  "win_pct": null,
+  "net_rs": 0,
+  "pf": null,
+  "avg_R": null
+ },
+ "backtest": {
+  "span": "22 Jun - 19 Oct 2026 (Dhan 15m, CRUDEOIL)",
+  "trades": 7,
+  "wins": 5,
+  "net_pts": 1293,
+  "rs_per_mini_lot": 12929,
+  "note": "single position, mini-lot costs; small sample"
+ },
+ "telegram": false,
+ "eod_for": "2026-10-19"
+}
