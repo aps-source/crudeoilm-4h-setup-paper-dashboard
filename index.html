@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>4H Setup CRUDEOILM — Paper</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root {
+    color-scheme: light;
+    --page: #eceff8; --surface-1: #ffffff; --surface-2: #f3f5fb;
+    --text-primary: #0e1320; --text-secondary: #4f5a74; --text-muted: #76829c;
+    --gridline: #e2e7f1; --border: rgba(14,19,32,0.10);
+    --shadow: 0 1px 2px rgba(14,19,32,0.06), 0 8px 24px rgba(40,50,110,0.08);
+    --brand-a: #b45309; --brand-b: #7c3aed; --brand-c: #0d9488; --accent: #4f46e5;
+    --long: #2563eb; --short: #d6336c;
+    --good: #12a150; --warning: #c77d00; --critical: #dc3545; --slate-1: #1b2340; --slate-2: #2d3a66;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --page: #090c14; --surface-1: #131a29; --surface-2: #1a2336;
+      --text-primary: #eef1f9; --text-secondary: #a0abc4; --text-muted: #7f8aa3;
+      --gridline: #253048; --border: rgba(238,241,249,0.11);
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
+      --brand-a: #d97706; --brand-b: #8b5cf6; --brand-c: #14b8a6; --accent: #9b8cf3;
+      --long: #4a8cf0; --short: #e0578a;
+      --good: #2bc85a; --warning: #f2b636; --critical: #f0645f; --slate-1: #0f1630; --slate-2: #26305a;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { font-size: clamp(15px, 0.55vw + 9px, 19px); }
+  body { margin: 0; color: var(--text-primary); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.4;
+    background: radial-gradient(1100px 480px at 8% -8%, color-mix(in srgb, var(--brand-a) 14%, transparent), transparent 70%),
+      radial-gradient(900px 480px at 100% 0%, color-mix(in srgb, var(--brand-c) 14%, transparent), transparent 70%), var(--page);
+    background-attachment: fixed; }
+  .muted { color: var(--text-muted); }
+  .hero { background: linear-gradient(115deg, var(--brand-a) 0%, var(--brand-b) 55%, var(--brand-c) 100%); color: #fff; padding: 1.05rem clamp(14px, 2vw, 32px) 0.9rem; }
+  .hero-inner { max-width: 1800px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: 0.9rem; }
+  .logo { width: 2.5rem; height: 2.5rem; border-radius: 0.8rem; background: rgba(255,255,255,0.18); display: grid; place-items: center; font-size: 1.35rem; }
+  h1 { font-size: 1.45rem; margin: 0; font-weight: 800; letter-spacing: -0.015em; }
+  .tag { font-size: 0.86rem; opacity: 0.9; margin-top: 1px; }
+  .hero-pill { background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.28); padding: 0.32rem 0.75rem; border-radius: 999px; font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+  .paper-pill { background: #fff; color: var(--brand-a); font-weight: 800; padding: 0.32rem 0.8rem; border-radius: 999px; font-size: 0.8rem; letter-spacing: 0.05em; }
+  details.rules { max-width: 1800px; margin: 0.55rem auto 0; font-size: 0.83rem; }
+  details.rules summary { cursor: pointer; font-weight: 600; width: fit-content; }
+  details.rules p { margin: 0.4rem 0 0; max-width: 1100px; opacity: 0.94; }
+  .page { max-width: 1800px; margin: 0 auto; padding: 1.1rem clamp(14px, 2vw, 32px) 2rem; }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(165px, 100%), 1fr)); gap: 0.9rem; margin-bottom: 1rem; }
+  .kpi { position: relative; overflow: hidden; background: var(--surface-1); border: 1px solid var(--border); border-radius: 1rem; padding: 0.95rem 1.1rem; box-shadow: var(--shadow); min-width: 0; }
+  .kpi::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 5px; background: var(--kc, var(--accent)); }
+  .kpi .k { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); font-weight: 700; }
+  .kpi .v { font-size: 1.7rem; font-weight: 800; font-variant-numeric: tabular-nums; margin-top: 0.1rem; line-height: 1.15; }
+  .kpi .s { font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.15rem; }
+  .kpi.good { --kc: var(--good); } .kpi.bad { --kc: var(--critical); } .kpi.warn { --kc: var(--warning); } .kpi.teal { --kc: var(--brand-c); } .kpi.violet { --kc: var(--brand-b); }
+  .v.good { color: var(--good); } .v.bad { color: var(--critical); }
+  .st-pill { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 700; font-size: 0.78rem; padding: 0.15rem 0.55rem; border-radius: 999px; }
+  .st-pill.live { background: color-mix(in srgb, var(--good) 16%, var(--surface-1)); color: var(--good); }
+  .st-pill.stale { background: color-mix(in srgb, var(--critical) 16%, var(--surface-1)); color: var(--critical); }
+  .st-pill.closed { background: var(--surface-2); color: var(--text-secondary); }
+  .dot { display: inline-block; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: currentColor; }
+  .decision { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.3rem; border-radius: 1.1rem; color: #fff; box-shadow: var(--shadow); margin-bottom: 1rem; }
+  .decision .glyph { width: 3.1rem; height: 3.1rem; border-radius: 50%; background: rgba(255,255,255,0.2); display: grid; place-items: center; font-size: 1.5rem; font-weight: 800; flex: none; }
+  .decision .mi-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; opacity: 0.9; font-weight: 700; }
+  .decision .mi-action { font-size: 1.55rem; font-weight: 800; line-height: 1.15; }
+  .decision .mi-meta { font-size: 0.85rem; opacity: 0.92; margin-top: 0.15rem; }
+  .decision.L { background: linear-gradient(120deg, color-mix(in srgb, var(--long) 72%, #000), var(--long)); }
+  .decision.S { background: linear-gradient(120deg, color-mix(in srgb, var(--short) 72%, #000), var(--short)); }
+  .decision.WAIT { background: linear-gradient(120deg, var(--slate-1), var(--slate-2)); }
+  .layout { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); align-items: start; }
+  @media (min-width: 1100px) { .layout { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); } }
+  .col { display: grid; gap: 1rem; min-width: 0; }
+  .box { background: var(--surface-1); border: 1px solid var(--border); border-radius: 1rem; padding: 0.95rem 1.1rem; box-shadow: var(--shadow); min-width: 0; }
+  .box h3 { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin: 0 0 0.7rem; font-weight: 800; }
+  .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.7rem; }
+  .tile { border-radius: 0.9rem; padding: 0.65rem 0.8rem; background: var(--surface-2); border: 1px solid var(--border); min-width: 0; }
+  .tile .v { font-size: 1.2rem; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .tile .k { font-size: 0.66rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; margin-top: 2px; }
+  .tile .v.good { color: var(--good); } .tile .v.bad { color: var(--critical); }
+  @media (max-width: 480px) { .tiles { grid-template-columns: 1fr 1fr; } .tile .v { font-size: 1rem; } }
+  .rbar { position: relative; height: 0.7rem; border-radius: 999px; background: linear-gradient(90deg, var(--critical) 0 25%, var(--gridline) 25% 100%); margin: 1.6rem 0.3rem 1.4rem; }
+  .rbar .now { position: absolute; top: -0.45rem; width: 0.3rem; height: 1.6rem; border-radius: 3px; background: var(--accent); transform: translateX(-50%); }
+  .rbar .lab { position: absolute; top: 1rem; transform: translateX(-50%); font-size: 0.68rem; font-weight: 800; color: var(--text-secondary); white-space: nowrap; }
+  .chart-img img { width: 100%; height: auto; border-radius: 0.6rem; display: block; border: 1px solid var(--border); }
+  .chart svg { width: 100%; height: 9rem; display: block; }
+  .note { color: var(--text-muted); font-size: 0.8rem; margin-top: 0.5rem; }
+  .tbl { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { text-align: left; color: var(--text-muted); font-weight: 700; padding: 0.4rem; border-bottom: 2px solid var(--gridline); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
+  td { padding: 0.45rem 0.4rem; border-bottom: 1px solid var(--gridline); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .empty-row td { color: var(--text-muted); text-align: center; padding: 1.1rem 0.4rem; white-space: normal; }
+  .side-pill { font-weight: 800; font-size: 0.7rem; padding: 0.12rem 0.55rem; border-radius: 999px; color: #fff; }
+  .side-pill.L { background: var(--long); } .side-pill.S { background: var(--short); }
+  .reason { font-size: 0.74rem; padding: 0.1rem 0.5rem; border-radius: 999px; background: var(--surface-2); color: var(--text-secondary); }
+  .pos { color: var(--good); font-weight: 700; } .neg { color: var(--critical); font-weight: 700; }
+  a { color: var(--accent); }
+  .error-banner { border-radius: 0.9rem; padding: 0.65rem 1rem; font-weight: 600; font-size: 0.88rem; background: color-mix(in srgb, var(--critical) 13%, var(--surface-1)); color: var(--critical); border: 1px solid var(--critical); margin-bottom: 1rem; }
+  footer { margin-top: 1.4rem; font-size: 0.78rem; color: var(--text-muted); text-align: center; }
+</style>
+</head>
+<body>
+<!--main-dashboard-link--><div id="main-dashboard-link" data-mode="bar" style="box-sizing:border-box;width:100%;padding:7px 14px;background:#0f172a;font:600 12px/1.3 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;text-align:left"><a href="https://aps-source.github.io/" style="color:#e2e8f0;text-decoration:none">&#9666; Main dashboard</a></div><!--/main-dashboard-link-->
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="brand">
+      <div class="logo">◧</div>
+      <div>
+        <h1>4H Setup · CRUDEOILM</h1>
+        <div class="tag">Liquidity sweep + fair value gap &middot; 4H setup, 15m entry &middot; MCX mini crude, 1 lot (10 bbl)</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <span class="paper-pill">PAPER</span>
+      <span class="hero-pill" id="clock">loading…</span>
+    </div>
+  </div>
+  <details class="rules">
+    <summary>Strategy rules</summary>
+    <p>1. A 4H candle trades through the last 4H swing low (high) and closes back above (below) it: the liquidity sweep.
+      2. Within 6 4H candles a bullish (bearish) fair value gap forms: candle 1's high below candle 3's low.
+      3. On the 15m chart, wait for price to come back into the gap, then enter at the close of the first candle closing in the trade's direction.
+      The setup is cancelled by a 15m close through the far side of the gap or after 12 4H candles.
+      4. Stop 1 tick beyond the gap or the touch extreme, target 3 &times; risk. One position at a time, no trend or CPR filter.
+      Costs about 7 points per round trip (brokerage, CTT, exchange, 1 tick slippage per side). No orders are placed.</p>
+  </details>
+</header>
+
+<main class="page">
+  <div id="err"></div>
+  <section class="kpis" id="kpis"></section>
+  <section id="decision"></section>
+  <div class="layout">
+    <div class="col">
+      <div class="box" id="position"></div>
+      <div class="box" id="equity"></div>
+      <div class="box" id="backtest"></div>
+    </div>
+    <div class="col">
+      <div class="box chart-img" id="latest"></div>
+    </div>
+  </div>
+  <div class="box" style="margin-top:1rem;" id="trades"></div>
+  <footer>Reads live_state.json every 60 s. The paper trader checks after every 15-minute candle (MCX 09:00–23:30/23:55 IST) and
+    pushes on every entry, exit and end-of-day summary, otherwise every 10 minutes. Entry and exit alerts with 4K charts go to the project's Telegram channel. Read-only page.</footer>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const rs = (v) => (v >= 0 ? "+" : "−") + "₹" + Math.abs(Math.round(v)).toLocaleString("en-IN");
+const px = (v) => v == null ? "—" : Math.round(v).toLocaleString("en-IN");
+const ts = (s) => s ? new Date(s.replace(" ", "T")).toLocaleString("en-IN", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit", hour12: false }) : "—";
+const sideName = (s) => s === "L" ? "LONG" : "SHORT";
+
+function sessionOpen() {   // MCX Mon-Fri 09:00-23:55 IST, judged on the viewer's clock converted to IST
+  const ist = new Date(Date.now() + (330 + new Date().getTimezoneOffset()) * 60000);
+  const m = ist.getHours() * 60 + ist.getMinutes();
+  return ist.getDay() >= 1 && ist.getDay() <= 5 && m >= 540 && m <= 1435;
+}
+function status(R) {
+  const age = (Date.now() - new Date(R.last_tick.replace(" ", "T") + "+05:30").getTime()) / 60000;
+  if (sessionOpen() && age > 40) return `<span class="st-pill stale"><span class="dot"></span>Stale ${Math.round(age)} min</span>`;
+  return sessionOpen() ? `<span class="st-pill live"><span class="dot"></span>Live</span>` : `<span class="st-pill closed"><span class="dot"></span>Market closed</span>`;
+}
+
+function kpis(R) {
+  const s = R.stats, p = R.open;
+  $("kpis").innerHTML = `
+    <div class="kpi ${s.net_rs >= 0 ? "good" : "bad"}"><div class="k">Paper P&amp;L (closed)</div><div class="v ${s.net_rs >= 0 ? "good" : "bad"}">${rs(s.net_rs)}</div><div class="s">1 lot CRUDEOILM · since ${esc(R.paper_start)}</div></div>
+    <div class="kpi violet"><div class="k">Trades</div><div class="v">${s.n}</div><div class="s">${s.n ? `${s.wins} won · ${s.win_pct}%` : "none closed yet"}</div></div>
+    <div class="kpi teal"><div class="k">Profit factor · avg R</div><div class="v">${s.pf ?? "—"} <span class="muted" style="font-size:1rem">· ${s.avg_R ?? "—"}R</span></div><div class="s">target 3R per trade</div></div>
+    <div class="kpi ${p ? (p.unrealized_rs >= 0 ? "good" : "bad") : "teal"}"><div class="k">Open position</div><div class="v ${p ? (p.unrealized_rs >= 0 ? "good" : "bad") : ""}">${p ? rs(p.unrealized_rs || 0) : "Flat"}</div><div class="s">${p ? `${sideName(p.side)} @ ${px(p.entry)}` : "waiting for a setup"}</div></div>
+    <div class="kpi ${R.telegram ? "good" : "warn"}"><div class="k">Engine</div><div class="v" style="font-size:1.05rem;line-height:1.9">${status(R)}</div><div class="s">last tick ${ts(R.last_tick)} · Telegram ${R.telegram ? "on" : "not set up"}</div></div>
+    <div class="kpi teal"><div class="k">Last price</div><div class="v">${px(R.last_price)}</div><div class="s">${esc(R.contract || "")} · bar ${ts(R.last_bar)}</div></div>`;
+}
+
+function decision(R) {
+  const p = R.open;
+  $("decision").innerHTML = p
+    ? `<div class="decision ${p.side}"><div class="glyph">${p.side === "L" ? "▲" : "▼"}</div><div><div class="mi-label">In a trade</div>
+        <div class="mi-action">${sideName(p.side)} 1 lot @ ${px(p.entry)}</div>
+        <div class="mi-meta">Entered ${ts(p.entry_t)} · stop ${px(p.stop + (p.shift || 0))} · target ${px(p.tp + (p.shift || 0))} · risk ${rs(p.risk * 10).slice(1)}</div></div></div>`
+    : `<div class="decision WAIT"><div class="glyph">◷</div><div><div class="mi-label">No position</div>
+        <div class="mi-action">Waiting for a sweep + FVG</div>
+        <div class="mi-meta">A setup needs a 4H liquidity sweep, a 4H fair value gap after it, and a 15m confirmation candle back in the gap. Expect about 2 trades a month.</div></div></div>`;
+}
+
+function position(R) {
+  const p = R.open;
+  if (!p) { $("position").innerHTML = `<h3>Open position</h3><div class="muted">Flat.${R.trades.length ? ` Last exit ${ts(R.trades[R.trades.length - 1].exit_t)}.` : ""}</div>`; return; }
+  const sg = p.side === "L" ? 1 : -1, sh = p.shift || 0, stop = p.stop + sh, tp = p.tp + sh, entry = p.entry + sh;
+  const r = sg * (R.last_price - entry) / p.risk;   // -1 = stop, 3 = target
+  const pct = (v) => Math.max(0, Math.min(100, (v + 1) / 4 * 100));
+  $("position").innerHTML = `<h3>Open position · ${sideName(p.side)} since ${ts(p.entry_t)}</h3>
+    <div class="tiles">
+      <div class="tile"><div class="v">${px(p.entry)}</div><div class="k">Entry</div></div>
+      <div class="tile"><div class="v bad">${px(stop)}</div><div class="k">Stop loss</div></div>
+      <div class="tile"><div class="v good">${px(tp)}</div><div class="k">Target 3R</div></div>
+      <div class="tile"><div class="v">${px(R.last_price)}</div><div class="k">Last price</div></div>
+      <div class="tile"><div class="v ${p.unrealized_rs >= 0 ? "good" : "bad"}">${rs(p.unrealized_rs || 0)}</div><div class="k">Open P&amp;L</div></div>
+      <div class="tile"><div class="v ${r >= 0 ? "good" : "bad"}">${r.toFixed(2)}R</div><div class="k">Progress</div></div>
+    </div>
+    <div class="rbar" role="img" aria-label="Price between stop and target"><div class="now" style="left:${pct(r)}%"></div>
+      <span class="lab" style="left:0%">SL</span><span class="lab" style="left:25%">Entry</span><span class="lab" style="left:50%">1R</span><span class="lab" style="left:75%">2R</span><span class="lab" style="left:100%">3R</span></div>
+    <div class="note">FVG ${px(p.fvg[0] + sh)}–${px(p.fvg[1] + sh)} · sweep of ${px(p.lvl + sh)} at ${ts(p.sweep)} · ${esc(p.contract)}${sh ? ` · levels shifted ${sh > 0 ? "+" : ""}${Math.round(sh)} after a contract roll` : ""}</div>`;
+}
+
+function equity(R) {
+  let c = 0;
+  const eq = [0, ...R.trades.map((t) => (c += t.rs))];
+  if (eq.length < 2) { $("equity").innerHTML = `<h3>Equity · closed trades</h3><div class="muted">Appears after the first closed trade.</div>`; return; }
+  const W = 600, H = 120, P = 8, mn = Math.min(...eq), mx = Math.max(...eq), rg = mx - mn || 1;
+  const x = (i) => P + (W - 2 * P) * (i / (eq.length - 1)), y = (v) => H - P - (H - 2 * P) * ((v - mn) / rg);
+  const line = eq.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+  $("equity").innerHTML = `<h3>Equity · closed trades, ₹ per lot</h3><div class="chart"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Paper equity curve">
+    <line x1="${P}" x2="${W - P}" y1="${y(0)}" y2="${y(0)}" stroke="var(--gridline)" stroke-dasharray="4 4"/>
+    <path d="${line}" fill="none" stroke="${c >= 0 ? "var(--good)" : "var(--critical)"}" stroke-width="2.6" stroke-linejoin="round"/>
+    ${eq.map((v, i) => i ? `<circle cx="${x(i)}" cy="${y(v)}" r="4" fill="${R.trades[i - 1].rs >= 0 ? "var(--good)" : "var(--critical)"}"><title>${rs(v)}</title></circle>` : "").join("")}</svg></div>`;
+}
+
+function backtest(R) {
+  const b = R.backtest;
+  $("backtest").innerHTML = `<h3>Backtest reference</h3><div class="tiles">
+      <div class="tile"><div class="v">${b.trades}</div><div class="k">Trades · ${b.wins} won</div></div>
+      <div class="tile"><div class="v good">+${b.net_pts}</div><div class="k">Net points</div></div>
+      <div class="tile"><div class="v good">${rs(b.rs_per_mini_lot)}</div><div class="k">₹ per mini lot</div></div></div>
+    <div class="note">${esc(b.span)}, ${esc(b.note)}. Dhan keeps 15m history only for live contracts, so this is all the history there is; the paper run is the real test.</div>`;
+}
+
+function latest(R) {
+  const src = (R.open && R.open.chart) || (R.trades.length && R.trades[R.trades.length - 1].chart);
+  $("latest").innerHTML = `<h3>${R.open ? "Current trade chart (at entry / last EOD)" : "Last trade chart"}</h3>` + (src
+    ? `<a href="${esc(src)}" target="_blank" rel="noopener"><img src="${esc(src)}?v=${R.trades.length}-${encodeURIComponent(R.eod_for || "")}" alt="4K chart of the latest paper trade" loading="lazy"></a><div class="note">Click for the full 3840×2160 image. 4H panel: sweep, FVG, weekly CPR (purple), EMA50 (amber). 15m panel: entry, stop, target, exit.</div>`
+    : `<div class="muted">No trade yet. The 4K chart of each entry and exit appears here and in Telegram.</div>`);
+}
+
+function trades(R) {
+  const rows = R.trades.slice().reverse().map((t) => `<tr><td>${ts(t.entry_t)}</td><td><span class="side-pill ${t.side}">${sideName(t.side)}</span></td>
+    <td>${px(t.entry)}</td><td>${px(t.stop)}</td><td>${px(t.tp)}</td><td>${ts(t.exit_t)}</td><td>${px(t.exit)}</td><td><span class="reason">${t.why}</span></td>
+    <td class="${t.net >= 0 ? "pos" : "neg"}">${t.net >= 0 ? "+" : ""}${t.net.toFixed(1)}</td><td class="${t.rs >= 0 ? "pos" : "neg"}">${rs(t.rs)}</td>
+    <td>${t.R >= 0 ? "+" : ""}${t.R.toFixed(2)}</td><td>${t.chart ? `<a href="${esc(t.chart)}" target="_blank" rel="noopener">4K chart</a>` : "—"}</td></tr>`).join("");
+  $("trades").innerHTML = `<h3>Paper trades</h3><div class="tbl"><table><thead><tr><th>Entry</th><th>Side</th><th>Entry px</th><th>Stop</th><th>Target</th><th>Exit</th><th>Exit px</th><th>Why</th><th>Points</th><th>₹ net</th><th>R</th><th>Chart</th></tr></thead>
+    <tbody>${rows || `<tr class="empty-row"><td colspan="12">No closed paper trades yet. Paper trading started ${esc(R.paper_start)}.</td></tr>`}</tbody></table></div>`;
+}
+
+async function refresh() {
+  let R;
+  try {
+    const r = await fetch("live_state.json?t=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    R = await r.json();
+  } catch (e) { $("err").innerHTML = `<div class="error-banner">Could not load live_state.json: ${esc(e.message)}</div>`; return; }
+  $("err").innerHTML = "";
+  for (const f of [kpis, decision, position, equity, backtest, latest, trades]) {
+    try { f(R); } catch (e) { console.error(f.name, e); }
+  }
+  $("clock").textContent = "Updated " + new Date().toLocaleTimeString("en-IN") + " · refreshes every 60 s";
+}
+refresh();
+setInterval(refresh, 60000);
+</script>
+</body>
+</html>
