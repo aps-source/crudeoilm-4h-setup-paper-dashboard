@@ -4,99 +4,7 @@
 <meta charset="utf-8" />
 <title>4H Setup CRUDEOILM — Paper</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<style>
-  :root {
-    color-scheme: light;
-    --page: #eceff8; --surface-1: #ffffff; --surface-2: #f3f5fb;
-    --text-primary: #0e1320; --text-secondary: #4f5a74; --text-muted: #76829c;
-    --gridline: #e2e7f1; --border: rgba(14,19,32,0.10);
-    --shadow: 0 1px 2px rgba(14,19,32,0.06), 0 8px 24px rgba(40,50,110,0.08);
-    --brand-a: #b45309; --brand-b: #7c3aed; --brand-c: #0d9488; --accent: #4f46e5;
-    --long: #2563eb; --short: #d6336c;
-    --good: #12a150; --warning: #c77d00; --critical: #dc3545; --slate-1: #1b2340; --slate-2: #2d3a66;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      color-scheme: dark;
-      --page: #090c14; --surface-1: #131a29; --surface-2: #1a2336;
-      --text-primary: #eef1f9; --text-secondary: #a0abc4; --text-muted: #7f8aa3;
-      --gridline: #253048; --border: rgba(238,241,249,0.11);
-      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
-      --brand-a: #d97706; --brand-b: #8b5cf6; --brand-c: #14b8a6; --accent: #9b8cf3;
-      --long: #4a8cf0; --short: #e0578a;
-      --good: #2bc85a; --warning: #f2b636; --critical: #f0645f; --slate-1: #0f1630; --slate-2: #26305a;
-    }
-  }
-  * { box-sizing: border-box; }
-  html { font-size: clamp(15px, 0.55vw + 9px, 19px); }
-  body { margin: 0; color: var(--text-primary); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.4;
-    background: radial-gradient(1100px 480px at 8% -8%, color-mix(in srgb, var(--brand-a) 14%, transparent), transparent 70%),
-      radial-gradient(900px 480px at 100% 0%, color-mix(in srgb, var(--brand-c) 14%, transparent), transparent 70%), var(--page);
-    background-attachment: fixed; }
-  .muted { color: var(--text-muted); }
-  .hero { background: linear-gradient(115deg, var(--brand-a) 0%, var(--brand-b) 55%, var(--brand-c) 100%); color: #fff; padding: 1.05rem clamp(14px, 2vw, 32px) 0.9rem; }
-  .hero-inner { max-width: 1800px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; }
-  .brand { display: flex; align-items: center; gap: 0.9rem; }
-  .logo { width: 2.5rem; height: 2.5rem; border-radius: 0.8rem; background: rgba(255,255,255,0.18); display: grid; place-items: center; font-size: 1.35rem; }
-  h1 { font-size: 1.45rem; margin: 0; font-weight: 800; letter-spacing: -0.015em; }
-  .tag { font-size: 0.86rem; opacity: 0.9; margin-top: 1px; }
-  .hero-pill { background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.28); padding: 0.32rem 0.75rem; border-radius: 999px; font-size: 0.82rem; font-variant-numeric: tabular-nums; }
-  .paper-pill { background: #fff; color: var(--brand-a); font-weight: 800; padding: 0.32rem 0.8rem; border-radius: 999px; font-size: 0.8rem; letter-spacing: 0.05em; }
-  details.rules { max-width: 1800px; margin: 0.55rem auto 0; font-size: 0.83rem; }
-  details.rules summary { cursor: pointer; font-weight: 600; width: fit-content; }
-  details.rules p { margin: 0.4rem 0 0; max-width: 1100px; opacity: 0.94; }
-  .page { max-width: 1800px; margin: 0 auto; padding: 1.1rem clamp(14px, 2vw, 32px) 2rem; }
-  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(165px, 100%), 1fr)); gap: 0.9rem; margin-bottom: 1rem; }
-  .kpi { position: relative; overflow: hidden; background: var(--surface-1); border: 1px solid var(--border); border-radius: 1rem; padding: 0.95rem 1.1rem; box-shadow: var(--shadow); min-width: 0; }
-  .kpi::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 5px; background: var(--kc, var(--accent)); }
-  .kpi .k { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); font-weight: 700; }
-  .kpi .v { font-size: 1.7rem; font-weight: 800; font-variant-numeric: tabular-nums; margin-top: 0.1rem; line-height: 1.15; }
-  .kpi .s { font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.15rem; }
-  .kpi.good { --kc: var(--good); } .kpi.bad { --kc: var(--critical); } .kpi.warn { --kc: var(--warning); } .kpi.teal { --kc: var(--brand-c); } .kpi.violet { --kc: var(--brand-b); }
-  .v.good { color: var(--good); } .v.bad { color: var(--critical); }
-  .st-pill { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 700; font-size: 0.78rem; padding: 0.15rem 0.55rem; border-radius: 999px; }
-  .st-pill.live { background: color-mix(in srgb, var(--good) 16%, var(--surface-1)); color: var(--good); }
-  .st-pill.stale { background: color-mix(in srgb, var(--critical) 16%, var(--surface-1)); color: var(--critical); }
-  .st-pill.closed { background: var(--surface-2); color: var(--text-secondary); }
-  .dot { display: inline-block; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: currentColor; }
-  .decision { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.3rem; border-radius: 1.1rem; color: #fff; box-shadow: var(--shadow); margin-bottom: 1rem; }
-  .decision .glyph { width: 3.1rem; height: 3.1rem; border-radius: 50%; background: rgba(255,255,255,0.2); display: grid; place-items: center; font-size: 1.5rem; font-weight: 800; flex: none; }
-  .decision .mi-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; opacity: 0.9; font-weight: 700; }
-  .decision .mi-action { font-size: 1.55rem; font-weight: 800; line-height: 1.15; }
-  .decision .mi-meta { font-size: 0.85rem; opacity: 0.92; margin-top: 0.15rem; }
-  .decision.L { background: linear-gradient(120deg, color-mix(in srgb, var(--long) 72%, #000), var(--long)); }
-  .decision.S { background: linear-gradient(120deg, color-mix(in srgb, var(--short) 72%, #000), var(--short)); }
-  .decision.WAIT { background: linear-gradient(120deg, var(--slate-1), var(--slate-2)); }
-  .layout { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); align-items: start; }
-  @media (min-width: 1100px) { .layout { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); } }
-  .col { display: grid; gap: 1rem; min-width: 0; }
-  .box { background: var(--surface-1); border: 1px solid var(--border); border-radius: 1rem; padding: 0.95rem 1.1rem; box-shadow: var(--shadow); min-width: 0; }
-  .box h3 { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin: 0 0 0.7rem; font-weight: 800; }
-  .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.7rem; }
-  .tile { border-radius: 0.9rem; padding: 0.65rem 0.8rem; background: var(--surface-2); border: 1px solid var(--border); min-width: 0; }
-  .tile .v { font-size: 1.2rem; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .tile .k { font-size: 0.66rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; margin-top: 2px; }
-  .tile .v.good { color: var(--good); } .tile .v.bad { color: var(--critical); }
-  @media (max-width: 480px) { .tiles { grid-template-columns: 1fr 1fr; } .tile .v { font-size: 1rem; } }
-  .rbar { position: relative; height: 0.7rem; border-radius: 999px; background: linear-gradient(90deg, var(--critical) 0 25%, var(--gridline) 25% 100%); margin: 1.6rem 0.3rem 1.4rem; }
-  .rbar .now { position: absolute; top: -0.45rem; width: 0.3rem; height: 1.6rem; border-radius: 3px; background: var(--accent); transform: translateX(-50%); }
-  .rbar .lab { position: absolute; top: 1rem; transform: translateX(-50%); font-size: 0.68rem; font-weight: 800; color: var(--text-secondary); white-space: nowrap; }
-  .chart-img img { width: 100%; height: auto; border-radius: 0.6rem; display: block; border: 1px solid var(--border); }
-  .chart svg { width: 100%; height: 9rem; display: block; }
-  .note { color: var(--text-muted); font-size: 0.8rem; margin-top: 0.5rem; }
-  .tbl { overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-  th { text-align: left; color: var(--text-muted); font-weight: 700; padding: 0.4rem; border-bottom: 2px solid var(--gridline); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
-  td { padding: 0.45rem 0.4rem; border-bottom: 1px solid var(--gridline); font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .empty-row td { color: var(--text-muted); text-align: center; padding: 1.1rem 0.4rem; white-space: normal; }
-  .side-pill { font-weight: 800; font-size: 0.7rem; padding: 0.12rem 0.55rem; border-radius: 999px; color: #fff; }
-  .side-pill.L { background: var(--long); } .side-pill.S { background: var(--short); }
-  .reason { font-size: 0.74rem; padding: 0.1rem 0.5rem; border-radius: 999px; background: var(--surface-2); color: var(--text-secondary); }
-  .pos { color: var(--good); font-weight: 700; } .neg { color: var(--critical); font-weight: 700; }
-  a { color: var(--accent); }
-  .error-banner { border-radius: 0.9rem; padding: 0.65rem 1rem; font-weight: 600; font-size: 0.88rem; background: color-mix(in srgb, var(--critical) 13%, var(--surface-1)); color: var(--critical); border: 1px solid var(--critical); margin-bottom: 1rem; }
-  footer { margin-top: 1.4rem; font-size: 0.78rem; color: var(--text-muted); text-align: center; }
-</style>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 <!--main-dashboard-link--><div id="main-dashboard-link" data-mode="bar" style="box-sizing:border-box;width:100%;padding:7px 14px;background:#0f172a;font:600 12px/1.3 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;text-align:left"><a href="https://aps-source.github.io/" style="color:#e2e8f0;text-decoration:none">&#9666; Main dashboard</a></div><!--/main-dashboard-link-->
@@ -111,6 +19,8 @@
       </div>
     </div>
     <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <a class="btn" href="signal_log.html">Signal history</a>
+      <a class="btn" href="backtest.html">Backtest trades</a>
       <span class="paper-pill">PAPER</span>
       <span class="hero-pill" id="clock">loading…</span>
     </div>
@@ -132,6 +42,7 @@
   <section id="decision"></section>
   <div class="layout">
     <div class="col">
+      <div class="box health" id="sod"></div>
       <div class="box" id="position"></div>
       <div class="box" id="equity"></div>
       <div class="box" id="backtest"></div>
@@ -184,6 +95,15 @@ function decision(R) {
     : `<div class="decision WAIT"><div class="glyph">◷</div><div><div class="mi-label">No position</div>
         <div class="mi-action">Waiting for a sweep + FVG</div>
         <div class="mi-meta">A setup needs a 4H liquidity sweep, a 4H fair value gap after it, and a 15m confirmation candle back in the gap. Expect about 2 trades a month.</div></div></div>`;
+}
+
+function sod(R) {
+  const age = (Date.now() - new Date(R.last_tick.replace(" ", "T") + "+05:30").getTime()) / 60000;
+  const rows = [{ label: "Paper loop ticking (last tick 20 min or less during the session)", ok: !sessionOpen() || age <= 20, detail: `last tick ${ts(R.last_tick)}` }, ...(R.sod || [])];
+  const all = rows.every((r) => r.ok);
+  $("sod").innerHTML = `<h3>Start-of-day checklist <span class="pill ${all ? "ok" : "bad"}">${all ? "ALL CLEAR" : "CHECK NEEDED"}</span></h3>` +
+    rows.map((r) => `<div class="row"><span class="ic ${r.ok ? "ok" : "bad"}">${r.ok ? "✓" : "!"}</span><div>${esc(r.label)}<div class="det">${esc(r.detail || "")}</div></div></div>`).join("") +
+    `<div class="note">${R.signals_watching ? `${R.signals_watching} setup(s) armed now, see <a href="signal_log.html">Signal history</a>.` : "No setup armed right now."} The same checklist goes to Telegram at the first candle of each session.</div>`;
 }
 
 function position(R) {
@@ -251,8 +171,8 @@ async function refresh() {
     if (!r.ok) throw new Error("HTTP " + r.status);
     R = await r.json();
   } catch (e) { $("err").innerHTML = `<div class="error-banner">Could not load live_state.json: ${esc(e.message)}</div>`; return; }
-  $("err").innerHTML = "";
-  for (const f of [kpis, decision, position, equity, backtest, latest, trades]) {
+  $("err").innerHTML = R.last_error ? `<div class="error-banner">Last data pull failed: ${esc(R.last_error)}</div>` : "";
+  for (const f of [kpis, decision, sod, position, equity, backtest, latest, trades]) {
     try { f(R); } catch (e) { console.error(f.name, e); }
   }
   $("clock").textContent = "Updated " + new Date().toLocaleTimeString("en-IN") + " · refreshes every 60 s";

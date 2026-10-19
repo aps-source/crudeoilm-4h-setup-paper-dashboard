@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-20 00:41:54.308897",
- "last_tick": "2026-10-20 00:41:52.099708",
+ "generated": "2026-10-20 01:00:37.370703",
+ "last_tick": "2026-10-20 01:00:37.367987",
  "last_bar": "2026-10-19 23:30:00",
  "last_price": 9452.0,
  "contract": "CRUDEOILM-19Nov2026-FUT",
@@ -23,6 +23,41 @@
   "rs_per_mini_lot": 12929,
   "note": "single position, mini-lot costs; small sample"
  },
- "telegram": false,
- "eod_for": "2026-10-19"
+ "telegram": true,
+ "eod_for": "2026-10-19",
+ "last_error": null,
+ "contract_expiry": "2026-11-19 23:30:00",
+ "sod": [
+  {
+   "label": "Dhan data pull OK (token valid)",
+   "ok": true,
+   "detail": "last pull fine"
+  },
+  {
+   "label": "Latest 15m bar fresh (35 min or less during the session)",
+   "ok": true,
+   "detail": "last bar 2026-10-19 23:30:00"
+  },
+  {
+   "label": "Front contract resolved, more than 3 days to expiry",
+   "ok": true,
+   "detail": "CRUDEOILM-19Nov2026-FUT expires 2026-11-19 23:30:00 (30 d)"
+  },
+  {
+   "label": "Telegram channel set and last send OK",
+   "ok": true,
+   "detail": "configured"
+  },
+  {
+   "label": "Dashboard publishing (git repo + last push OK)",
+   "ok": true,
+   "detail": "ok"
+  },
+  {
+   "label": "Position state consistent",
+   "ok": true,
+   "detail": "flat"
+  }
+ ],
+ "signals_watching": 1
 }

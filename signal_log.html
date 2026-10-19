@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>4H Setup CRUDEOILM — Signal history</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="brand">
+      <div class="logo">◧</div>
+      <div>
+        <h1>Signal history · 4H Setup CRUDEOILM</h1>
+        <div class="tag">Every 4H liquidity sweep the engine saw, and what became of it</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <a class="btn" href="index.html">Live dashboard</a>
+      <a class="btn" href="backtest.html">Backtest trades</a>
+      <span class="paper-pill">PAPER</span>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <div id="err"></div>
+  <section class="kpis" id="kpis"></section>
+  <div class="box">
+    <h3>Setups <span class="muted" id="count" style="text-transform:none;letter-spacing:0;font-weight:600"></span></h3>
+    <div class="filters" id="src"></div>
+    <div class="filters" id="filters"></div>
+    <div class="tbl"><table id="tbl"></table></div>
+    <div class="note">A row is one 4H sweep of a swing low (long) or high (short) that closed back.
+      <b>No FVG</b>: no fair value gap formed within 6 4H candles. <b>Watching gap</b>: a gap formed and the trader waits for a 15m confirmation candle in it (a Telegram "setup ARMED" alert goes out).
+      <b>Cancelled</b>: a 15m candle closed through the far side of the gap. <b>Expired</b>: 12 4H candles passed without an entry.
+      <b>Skipped</b>: a valid entry while another trade was open (one position at a time). <b>Entry</b>: traded.
+      Live rows cover the last 90 days; rows before the paper start are marked "pre-paper".</div>
+  </div>
+  <footer>Live rows come from signal_log.json (updated by the paper trader); backtest-period rows from backtest_data.json. Read-only page.</footer>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const px = (v) => v == null ? "—" : Math.round(v).toLocaleString("en-IN");
+const ts = (s) => s ? new Date(String(s).replace(" ", "T")).toLocaleString("en-IN", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit", hour12: false }) : "—";
+const GROUPS = { all: "All", watch: "Armed / watching", entry: "Entries", skip: "Skipped", dead: "Cancelled / expired", nofvg: "No FVG" };
+const group = (s) => s === "entry" ? "entry" : s.startsWith("watching") ? "watch" : s.startsWith("skipped") ? "skip" : s === "no FVG" ? "nofvg" : "dead";
+const cls = (s) => ({ entry: "entry", watch: "watch", dead: s.startsWith("cancel") ? "cancel" : "expired" }[group(s)] || "");
+let DATA = { live: [], bt: [] }, SRC = "live", F = "all";
+
+function kpis(rows) {
+  const c = (g) => rows.filter((r) => group(r.status) === g).length;
+  $("kpis").innerHTML = `
+    <div class="kpi violet"><div class="k">Sweeps</div><div class="v">${rows.length}</div><div class="s">${SRC === "live" ? "last 90 days, live engine" : "22 Jun – 19 Oct 2026 backtest"}</div></div>
+    <div class="kpi warn"><div class="k">Armed now</div><div class="v">${c("watch")}</div><div class="s">waiting for a 15m entry</div></div>
+    <div class="kpi good"><div class="k">Entries</div><div class="v">${c("entry")}</div><div class="s">${c("skip")} more skipped (in a trade)</div></div>
+    <div class="kpi bad"><div class="k">Cancelled / expired</div><div class="v">${c("dead")}</div><div class="s">gap broken or timed out</div></div>
+    <div class="kpi teal"><div class="k">No FVG</div><div class="v">${c("nofvg")}</div><div class="s">sweep without a gap after it</div></div>`;
+}
+
+function render() {
+  const rows = DATA[SRC];
+  kpis(rows);
+  $("src").innerHTML = [["live", "Live engine (last 90 days)"], ["bt", "Backtest period"]].map(([k, l]) => `<button data-src="${k}" class="${k === SRC ? "on" : ""}">${l}</button>`).join("");
+  $("filters").innerHTML = Object.entries(GROUPS).map(([k, l]) => `<button data-f="${k}" class="${k === F ? "on" : ""}">${l}</button>`).join("");
+  const shown = rows.filter((r) => F === "all" || group(r.status) === F);
+  $("count").textContent = `· ${shown.length} of ${rows.length}`;
+  $("tbl").innerHTML = `<thead><tr><th>Sweep (4H)</th><th>Side</th><th>Liquidity</th><th>FVG candle</th><th>FVG zone</th><th>Status</th><th>Entry</th><th>Entry px</th>${SRC === "live" ? "<th>First seen</th>" : ""}</tr></thead><tbody>` +
+    (shown.map((r) => `<tr><td>${ts(r.sweep)}${SRC === "live" && !r.paper ? ' <span class="st">pre-paper</span>' : ""}</td>
+      <td><span class="side-pill ${r.side}">${r.side === "L" ? "LONG" : "SHORT"}</span></td><td>${px(r.lvl)}</td>
+      <td>${ts(r.fvg_t)}</td><td>${r.fvg_lo != null ? `${px(r.fvg_lo)}–${px(r.fvg_hi)}` : "—"}</td>
+      <td><span class="st ${cls(r.status)}">${esc(r.status)}</span></td><td>${ts(r.entry_t)}</td><td>${px(r.entry)}</td>
+      ${SRC === "live" ? `<td class="muted">${ts(r.first_seen)}</td>` : ""}</tr>`).join("") ||
+      `<tr class="empty-row"><td colspan="9">Nothing in this group.</td></tr>`) + "</tbody>";
+}
+
+document.addEventListener("click", (e) => {
+  const b = e.target.closest("button"); if (!b) return;
+  if (b.dataset.src) SRC = b.dataset.src;
+  if (b.dataset.f) F = b.dataset.f;
+  try { localStorage.setItem("4hs-sig", JSON.stringify([SRC, F])); } catch (err) {}
+  render();
+});
+try { [SRC, F] = JSON.parse(localStorage.getItem("4hs-sig")) || [SRC, F]; } catch (e) {}
+
+(async () => {
+  try {
+    const [a, b] = await Promise.all(["signal_log.json", "backtest_data.json"].map((u) => fetch(u + "?t=" + Date.now(), { cache: "no-store" }).then((r) => r.ok ? r.json() : null).catch(() => null)));
+    DATA.live = (a && a.signals) || []; DATA.bt = (b && b.signals) || [];
+    if (!a) $("err").innerHTML = `<div class="error-banner">signal_log.json not published yet; it appears after the paper trader's next tick.</div>`;
+  } catch (e) { $("err").innerHTML = `<div class="error-banner">${esc(e.message)}</div>`; }
+  render();
+})();
+</script>
+</body>
+</html>
