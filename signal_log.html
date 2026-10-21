@@ -55,7 +55,7 @@ function kpis(rows) {
   const c = (g) => rows.filter((r) => group(r.status) === g).length;
   $("kpis").innerHTML = `
     <div class="kpi violet"><div class="k">Sweeps</div><div class="v">${rows.length}</div><div class="s">${SRC === "live" ? "last 90 days, live engine" : "22 Jun – 19 Oct 2026 backtest"}</div></div>
-    <div class="kpi warn"><div class="k">Armed now</div><div class="v">${c("watch")}</div><div class="s">waiting for a 15m entry</div></div>
+    <div class="kpi warn"><div class="k">Watching now</div><div class="v">${c("watch")}</div><div class="s">${rows.filter((r) => r.status.startsWith("watching gap")).length} armed (gap formed), rest waiting for an FVG</div></div>
     <div class="kpi good"><div class="k">Entries</div><div class="v">${c("entry")}</div><div class="s">${c("skip")} more skipped (in a trade)</div></div>
     <div class="kpi bad"><div class="k">Cancelled / expired</div><div class="v">${c("dead")}</div><div class="s">gap broken or timed out</div></div>
     <div class="kpi teal"><div class="k">No FVG</div><div class="v">${c("nofvg")}</div><div class="s">sweep without a gap after it</div></div>`;
