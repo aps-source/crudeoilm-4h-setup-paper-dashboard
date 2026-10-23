@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-23 10:45:25.680966",
- "last_tick": "2026-10-23 10:45:25.676158",
- "last_bar": "2026-10-23 10:30:00",
- "last_price": 9544.0,
+ "generated": "2026-10-23 11:00:24.229939",
+ "last_tick": "2026-10-23 11:00:24.225232",
+ "last_bar": "2026-10-23 10:45:00",
+ "last_price": 9579.0,
  "contract": "CRUDEOILM-19Nov2026-FUT",
  "paper_start": "2026-10-20",
  "open": {
@@ -18,13 +18,13 @@
   ],
   "sweep": "2026-10-20 17:00:00",
   "entry_bar_close": 9371.0,
-  "checked_to": "2026-10-23 10:30:00",
+  "checked_to": "2026-10-23 10:45:00",
   "contract": "CRUDEOILM-19Nov2026-FUT",
   "lvl": 9075.0,
   "fvg_t": "2026-10-22 13:00:00",
   "chart": "charts/trade_20261022_2015_L.png",
   "shift": 0.0,
-  "unrealized_rs": 1730
+  "unrealized_rs": 2080
  },
  "trades": [],
  "stats": {
@@ -56,7 +56,7 @@
   {
    "label": "Latest 15m bar fresh (35 min or less during the session)",
    "ok": true,
-   "detail": "last bar 2026-10-23 10:30:00"
+   "detail": "last bar 2026-10-23 10:45:00"
   },
   {
    "label": "Front contract resolved, more than 3 days to expiry",
