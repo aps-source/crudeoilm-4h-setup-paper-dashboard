@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-23 12:15:43.223729",
- "last_tick": "2026-10-23 12:15:43.204816",
- "last_bar": "2026-10-23 11:30:00",
- "last_price": 9601.0,
+ "generated": "2026-10-23 12:30:23.895522",
+ "last_tick": "2026-10-23 12:30:23.892938",
+ "last_bar": "2026-10-23 12:15:00",
+ "last_price": 9591.0,
  "contract": "CRUDEOILM-19Nov2026-FUT",
  "paper_start": "2026-10-20",
  "open": {
@@ -18,13 +18,13 @@
   ],
   "sweep": "2026-10-20 17:00:00",
   "entry_bar_close": 9371.0,
-  "checked_to": "2026-10-23 11:30:00",
+  "checked_to": "2026-10-23 12:15:00",
   "contract": "CRUDEOILM-19Nov2026-FUT",
   "lvl": 9075.0,
   "fvg_t": "2026-10-22 13:00:00",
   "chart": "charts/trade_20261022_2015_L.png",
   "shift": 0.0,
-  "unrealized_rs": 2300
+  "unrealized_rs": 2200
  },
  "trades": [],
  "stats": {
@@ -45,18 +45,18 @@
  },
  "telegram": true,
  "eod_for": "2026-10-22",
- "last_error": "Dhan 15m fetch failed for 573423: HTTPSConnectionPool(host='api.dhan.co', port=443): Max retries exceeded with url: /v2/charts/intraday (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000001F4B6D29810>: Failed to resolve 'api.dhan.co' ([Errno 11001] getaddrinfo failed",
+ "last_error": null,
  "contract_expiry": "2026-11-19 23:30:00",
  "sod": [
   {
    "label": "Dhan data pull OK (token valid)",
-   "ok": false,
-   "detail": "Dhan 15m fetch failed for 573423: HTTPSConnectionPool(host='api.dhan.co', port=443): Max retries exceeded with url: /v2/charts/intraday (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000001F4B6D29810>: Failed to resolve 'api.dhan.co' ([Errno 11001] getaddrinfo failed"
+   "ok": true,
+   "detail": "last pull fine"
   },
   {
    "label": "Latest 15m bar fresh (35 min or less during the session)",
-   "ok": false,
-   "detail": "last bar 2026-10-23 11:30:00"
+   "ok": true,
+   "detail": "last bar 2026-10-23 12:15:00"
   },
   {
    "label": "Front contract resolved, more than 3 days to expiry",
