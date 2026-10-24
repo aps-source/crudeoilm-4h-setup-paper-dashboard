@@ -1,39 +1,48 @@
 {
- "generated": "2026-10-24 22:05:45.373817",
- "last_tick": "2026-10-24 22:05:45.335261",
- "last_bar": "2026-10-23 15:45:00",
- "last_price": 9604.0,
+ "generated": "2026-10-24 22:36:12.490115",
+ "last_tick": "2026-10-24 22:36:07.190891",
+ "last_bar": "2026-10-23 23:15:00",
+ "last_price": 9779.0,
  "contract": "CRUDEOILM-19Nov2026-FUT",
  "paper_start": "2026-10-20",
- "open": {
-  "side": "L",
-  "entry_t": "2026-10-22 20:15:00",
-  "entry": 9371.0,
-  "stop": 9242.0,
-  "tp": 9758.0,
-  "risk": 129.0,
-  "fvg": [
-   9243.0,
-   9389.0
-  ],
-  "sweep": "2026-10-20 17:00:00",
-  "entry_bar_close": 9371.0,
-  "checked_to": "2026-10-23 15:45:00",
-  "contract": "CRUDEOILM-19Nov2026-FUT",
-  "lvl": 9075.0,
-  "fvg_t": "2026-10-22 13:00:00",
-  "chart": "charts/trade_20261022_2015_L.png",
-  "shift": 0.0,
-  "unrealized_rs": 2330
- },
- "trades": [],
+ "open": null,
+ "trades": [
+  {
+   "side": "L",
+   "entry_t": "2026-10-22 20:15:00",
+   "entry": 9371.0,
+   "stop": 9242.0,
+   "tp": 9758.0,
+   "risk": 129.0,
+   "fvg": [
+    9243.0,
+    9389.0
+   ],
+   "sweep": "2026-10-20 17:00:00",
+   "entry_bar_close": 9371.0,
+   "checked_to": "2026-10-23 19:00:00",
+   "contract": "CRUDEOILM-19Nov2026-FUT",
+   "lvl": 9075.0,
+   "fvg_t": "2026-10-22 13:00:00",
+   "chart": "charts/trade_20261022_2015_L.png",
+   "shift": 0.0,
+   "unrealized_rs": 2330,
+   "exit_t": "2026-10-23 19:15:00",
+   "exit": 9758.0,
+   "why": "TP",
+   "gross": 387.0,
+   "net": 379.5,
+   "R": 2.94,
+   "rs": 3795
+  }
+ ],
  "stats": {
-  "n": 0,
-  "wins": 0,
-  "win_pct": null,
-  "net_rs": 0,
+  "n": 1,
+  "wins": 1,
+  "win_pct": 100.0,
+  "net_rs": 3795,
   "pf": null,
-  "avg_R": null
+  "avg_R": 2.94
  },
  "backtest": {
   "span": "22 Jun - 19 Oct 2026 (Dhan 15m, CRUDEOIL)",
@@ -44,19 +53,19 @@
   "note": "single position, mini-lot costs; small sample"
  },
  "telegram": true,
- "eod_for": "2026-10-22",
- "last_error": "Dhan 15m fetch failed for 573423: {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}",
+ "eod_for": "2026-10-23",
+ "last_error": null,
  "contract_expiry": "2026-11-19 23:30:00",
  "sod": [
   {
    "label": "Dhan data pull OK (token valid)",
-   "ok": false,
-   "detail": "Dhan 15m fetch failed for 573423: {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}"
+   "ok": true,
+   "detail": "last pull fine"
   },
   {
    "label": "Latest 15m bar fresh (35 min or less during the session)",
    "ok": true,
-   "detail": "last bar 2026-10-23 15:45:00"
+   "detail": "last bar 2026-10-23 23:15:00"
   },
   {
    "label": "Front contract resolved, more than 3 days to expiry",
@@ -76,7 +85,7 @@
   {
    "label": "Position state consistent",
    "ok": true,
-   "detail": "open L"
+   "detail": "flat"
   }
  ],
  "signals_watching": 0
