@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-25 17:56:09.328999",
- "last_tick": "2026-10-25 17:56:09.315297",
+ "generated": "2026-10-25 18:26:19.945118",
+ "last_tick": "2026-10-25 18:26:19.941139",
  "last_bar": "2026-10-23 23:15:00",
  "last_price": 9779.0,
  "contract": "CRUDEOILM-19Nov2026-FUT",
@@ -54,13 +54,13 @@
  },
  "telegram": true,
  "eod_for": "2026-10-23",
- "last_error": "Dhan 15m fetch failed for 573423: {'error_code': 'DH-906', 'error_type': 'Order_Error', 'error_message': 'Invalid Token'}",
+ "last_error": null,
  "contract_expiry": "2026-11-19 23:30:00",
  "sod": [
   {
    "label": "Dhan data pull OK (token valid)",
-   "ok": false,
-   "detail": "Dhan 15m fetch failed for 573423: {'error_code': 'DH-906', 'error_type': 'Order_Error', 'error_message': 'Invalid Token'}"
+   "ok": true,
+   "detail": "last pull fine"
   },
   {
    "label": "Latest 15m bar fresh (35 min or less during the session)",
