@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-26 08:44:23.229816",
- "last_tick": "2026-10-26 08:44:23.226000",
+ "generated": "2026-10-26 09:14:55.548339",
+ "last_tick": "2026-10-26 09:14:55.543888",
  "last_bar": "2026-10-23 23:15:00",
  "last_price": 9779.0,
  "contract": "CRUDEOILM-19Nov2026-FUT",
@@ -54,17 +54,17 @@
  },
  "telegram": true,
  "eod_for": "2026-10-23",
- "last_error": "<urlopen error [Errno 11001] getaddrinfo failed>",
+ "last_error": null,
  "contract_expiry": "2026-11-19 23:30:00",
  "sod": [
   {
    "label": "Dhan data pull OK (token valid)",
-   "ok": false,
-   "detail": "<urlopen error [Errno 11001] getaddrinfo failed>"
+   "ok": true,
+   "detail": "last pull fine"
   },
   {
    "label": "Latest 15m bar fresh (35 min or less during the session)",
-   "ok": true,
+   "ok": false,
    "detail": "last bar 2026-10-23 23:15:00"
   },
   {
