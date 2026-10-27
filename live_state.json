@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-26 16:45:24.775663",
- "last_tick": "2026-10-26 16:45:24.770636",
- "last_bar": "2026-10-26 16:30:00",
- "last_price": 9647.0,
+ "generated": "2026-10-27 09:00:48.999198",
+ "last_tick": "2026-10-27 09:00:40.204003",
+ "last_bar": "2026-10-26 23:15:00",
+ "last_price": 9707.0,
  "contract": "CRUDEOILM-19Nov2026-FUT",
  "paper_start": "2026-10-20",
  "open": null,
@@ -53,7 +53,7 @@
   "note": "single position, mini-lot costs; small sample"
  },
  "telegram": true,
- "eod_for": "2026-10-23",
+ "eod_for": "2026-10-26",
  "last_error": null,
  "contract_expiry": "2026-11-19 23:30:00",
  "sod": [
@@ -64,13 +64,13 @@
   },
   {
    "label": "Latest 15m bar fresh (35 min or less during the session)",
-   "ok": true,
-   "detail": "last bar 2026-10-26 16:30:00"
+   "ok": false,
+   "detail": "last bar 2026-10-26 23:15:00"
   },
   {
    "label": "Front contract resolved, more than 3 days to expiry",
    "ok": true,
-   "detail": "CRUDEOILM-19Nov2026-FUT expires 2026-11-19 23:30:00 (24 d)"
+   "detail": "CRUDEOILM-19Nov2026-FUT expires 2026-11-19 23:30:00 (23 d)"
   },
   {
    "label": "Telegram channel set and last send OK",
@@ -79,8 +79,8 @@
   },
   {
    "label": "Dashboard publishing (git repo + last push OK)",
-   "ok": false,
-   "detail": "fatal: unable to access 'https://github.com/aps-source/crudeoilm-4h-setup-paper-dashboard.git/': Could not resolve host: github.com"
+   "ok": true,
+   "detail": "ok"
   },
   {
    "label": "Position state consistent",
