@@ -1,12 +1,23 @@
 {
- "generated": "2026-10-28 16:00:24.513066",
+ "generated": "2026-10-29 08:58:54.796315",
  "paper_start": "2026-10-20",
  "signals": [
+  {
+   "side": "S",
+   "sweep": "2026-10-28 21:00:00",
+   "lvl": 9833.0,
+   "status": "watching for FVG",
+   "first_seen": "2026-10-29 08:58:44.121974",
+   "paper": true
+  },
   {
    "side": "L",
    "sweep": "2026-10-28 09:00:00",
    "lvl": 9561.0,
-   "status": "watching for FVG",
+   "fvg_t": "2026-10-28 21:00:00",
+   "fvg_lo": 9743.0,
+   "fvg_hi": 9753.0,
+   "status": "watching gap",
    "first_seen": "2026-10-28 09:26:49.723328",
    "paper": true
   },
