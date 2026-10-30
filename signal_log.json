@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-30 09:01:07.798319",
+ "generated": "2026-10-30 09:15:28.130342",
  "paper_start": "2026-10-20",
  "signals": [
   {
@@ -9,7 +9,7 @@
    "fvg_t": "2026-10-29 13:00:00",
    "fvg_lo": 9736.0,
    "fvg_hi": 9753.0,
-   "status": "watching gap",
+   "status": "cancelled (closed through gap)",
    "first_seen": "2026-10-29 08:58:44.121974",
    "paper": true
   },
