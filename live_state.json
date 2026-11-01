@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-30 16:00:42.171685",
- "last_tick": "2026-10-30 16:00:42.166470",
+ "generated": "2026-11-01 19:18:12.302881",
+ "last_tick": "2026-11-01 19:18:12.299242",
  "last_bar": "2026-10-30 15:45:00",
  "last_price": 9897.0,
  "contract": "CRUDEOILM-19Nov2026-FUT",
@@ -54,13 +54,13 @@
  },
  "telegram": true,
  "eod_for": "2026-10-29",
- "last_error": null,
+ "last_error": "Dhan 15m fetch failed for 573423: {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}",
  "contract_expiry": "2026-11-19 23:30:00",
  "sod": [
   {
    "label": "Dhan data pull OK (token valid)",
-   "ok": true,
-   "detail": "last pull fine"
+   "ok": false,
+   "detail": "Dhan 15m fetch failed for 573423: {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}"
   },
   {
    "label": "Latest 15m bar fresh (35 min or less during the session)",
@@ -70,7 +70,7 @@
   {
    "label": "Front contract resolved, more than 3 days to expiry",
    "ok": true,
-   "detail": "CRUDEOILM-19Nov2026-FUT expires 2026-11-19 23:30:00 (20 d)"
+   "detail": "CRUDEOILM-19Nov2026-FUT expires 2026-11-19 23:30:00 (18 d)"
   },
   {
    "label": "Telegram channel set and last send OK",
@@ -79,8 +79,8 @@
   },
   {
    "label": "Dashboard publishing (git repo + last push OK)",
-   "ok": true,
-   "detail": "ok"
+   "ok": false,
+   "detail": "fatal: unable to access 'https://github.com/aps-source/crudeoilm-4h-setup-paper-dashboard.git/': Empty reply from server"
   },
   {
    "label": "Position state consistent",
