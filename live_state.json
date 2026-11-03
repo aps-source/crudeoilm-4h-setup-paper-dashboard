@@ -1,8 +1,8 @@
 {
- "generated": "2026-11-03 11:15:23.407468",
- "last_tick": "2026-11-03 11:15:23.404570",
- "last_bar": "2026-11-03 11:00:00",
- "last_price": 9226.0,
+ "generated": "2026-11-03 11:30:23.166242",
+ "last_tick": "2026-11-03 11:30:23.163566",
+ "last_bar": "2026-11-03 11:15:00",
+ "last_price": 9249.0,
  "contract": "CRUDEOILM-19Nov2026-FUT",
  "paper_start": "2026-10-20",
  "open": null,
@@ -65,7 +65,7 @@
   {
    "label": "Latest 15m bar fresh (35 min or less during the session)",
    "ok": true,
-   "detail": "last bar 2026-11-03 11:00:00"
+   "detail": "last bar 2026-11-03 11:15:00"
   },
   {
    "label": "Front contract resolved, more than 3 days to expiry",
@@ -79,8 +79,8 @@
   },
   {
    "label": "Dashboard publishing (git repo + last push OK)",
-   "ok": true,
-   "detail": "ok"
+   "ok": false,
+   "detail": "error: failed to push some refs to 'https://github.com/aps-source/crudeoilm-4h-setup-paper-dashboard.git'"
   },
   {
    "label": "Position state consistent",
