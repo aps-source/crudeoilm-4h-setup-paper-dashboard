@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-03 16:00:25.470249",
- "last_tick": "2026-11-03 16:00:25.467228",
+ "generated": "2026-11-04 09:02:38.787664",
+ "last_tick": "2026-11-04 09:02:38.767557",
  "last_bar": "2026-11-03 15:45:00",
  "last_price": 9262.0,
  "contract": "CRUDEOILM-19Nov2026-FUT",
@@ -54,23 +54,23 @@
  },
  "telegram": true,
  "eod_for": "2026-11-02",
- "last_error": null,
+ "last_error": "Dhan 15m fetch failed for 573423: {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}",
  "contract_expiry": "2026-11-19 23:30:00",
  "sod": [
   {
    "label": "Dhan data pull OK (token valid)",
-   "ok": true,
-   "detail": "last pull fine"
+   "ok": false,
+   "detail": "Dhan 15m fetch failed for 573423: {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}"
   },
   {
    "label": "Latest 15m bar fresh (35 min or less during the session)",
-   "ok": true,
+   "ok": false,
    "detail": "last bar 2026-11-03 15:45:00"
   },
   {
    "label": "Front contract resolved, more than 3 days to expiry",
    "ok": true,
-   "detail": "CRUDEOILM-19Nov2026-FUT expires 2026-11-19 23:30:00 (16 d)"
+   "detail": "CRUDEOILM-19Nov2026-FUT expires 2026-11-19 23:30:00 (15 d)"
   },
   {
    "label": "Telegram channel set and last send OK",
