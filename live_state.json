@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-04 15:15:23.503443",
- "last_tick": "2026-11-04 15:15:23.500923",
+ "generated": "2026-11-04 15:31:10.577459",
+ "last_tick": "2026-11-04 15:31:10.570443",
  "last_bar": "2026-11-04 15:00:00",
  "last_price": 9073.0,
  "contract": "CRUDEOILM-19Nov2026-FUT",
@@ -54,13 +54,13 @@
  },
  "telegram": true,
  "eod_for": "2026-11-02",
- "last_error": null,
+ "last_error": "Dhan 15m fetch failed for 573423: HTTPSConnectionPool(host='api.dhan.co', port=443): Max retries exceeded with url: /v2/charts/intraday (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000176A5D3AE90>: Failed to resolve 'api.dhan.co' ([Errno 11001] getaddrinfo failed",
  "contract_expiry": "2026-11-19 23:30:00",
  "sod": [
   {
    "label": "Dhan data pull OK (token valid)",
-   "ok": true,
-   "detail": "last pull fine"
+   "ok": false,
+   "detail": "Dhan 15m fetch failed for 573423: HTTPSConnectionPool(host='api.dhan.co', port=443): Max retries exceeded with url: /v2/charts/intraday (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000176A5D3AE90>: Failed to resolve 'api.dhan.co' ([Errno 11001] getaddrinfo failed"
   },
   {
    "label": "Latest 15m bar fresh (35 min or less during the session)",
@@ -79,8 +79,8 @@
   },
   {
    "label": "Dashboard publishing (git repo + last push OK)",
-   "ok": true,
-   "detail": "ok"
+   "ok": false,
+   "detail": "remote: Internal Server Error        \nremote: Request ID ED83:20C018:165A42:1D4699:6AEAFEB6        \nremote: Time 2026-11-04T09:45:27Z\nTo https://github.com/aps-source/crudeoilm-4h-setup-paper-dashboar"
   },
   {
    "label": "Position state consistent",
