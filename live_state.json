@@ -1,8 +1,8 @@
 {
- "generated": "2026-11-04 16:00:23.835421",
- "last_tick": "2026-11-04 16:00:23.832390",
- "last_bar": "2026-11-04 15:45:00",
- "last_price": 8955.0,
+ "generated": "2026-11-05 09:03:26.464442",
+ "last_tick": "2026-11-05 09:03:03.659853",
+ "last_bar": "2026-11-04 23:45:00",
+ "last_price": 8393.0,
  "contract": "CRUDEOILM-19Nov2026-FUT",
  "paper_start": "2026-10-20",
  "open": null,
@@ -53,7 +53,7 @@
   "note": "single position, mini-lot costs; small sample"
  },
  "telegram": true,
- "eod_for": "2026-11-02",
+ "eod_for": "2026-11-04",
  "last_error": null,
  "contract_expiry": "2026-11-19 23:30:00",
  "sod": [
@@ -64,13 +64,13 @@
   },
   {
    "label": "Latest 15m bar fresh (35 min or less during the session)",
-   "ok": true,
-   "detail": "last bar 2026-11-04 15:45:00"
+   "ok": false,
+   "detail": "last bar 2026-11-04 23:45:00"
   },
   {
    "label": "Front contract resolved, more than 3 days to expiry",
    "ok": true,
-   "detail": "CRUDEOILM-19Nov2026-FUT expires 2026-11-19 23:30:00 (15 d)"
+   "detail": "CRUDEOILM-19Nov2026-FUT expires 2026-11-19 23:30:00 (14 d)"
   },
   {
    "label": "Telegram channel set and last send OK",
