@@ -1,8 +1,8 @@
 {
- "generated": "2026-11-06 17:45:23.317239",
- "last_tick": "2026-11-06 17:45:23.313640",
- "last_bar": "2026-11-06 17:30:00",
- "last_price": 8559.0,
+ "generated": "2026-11-07 12:39:24.935056",
+ "last_tick": "2026-11-07 12:38:54.759525",
+ "last_bar": "2026-11-06 23:45:00",
+ "last_price": 8480.0,
  "contract": "CRUDEOILM-19Nov2026-FUT",
  "paper_start": "2026-10-20",
  "open": {
@@ -18,13 +18,13 @@
   ],
   "sweep": "2026-11-04 17:00:00",
   "entry_bar_close": 8403.0,
-  "checked_to": "2026-11-06 17:30:00",
+  "checked_to": "2026-11-06 23:45:00",
   "contract": "CRUDEOILM-19Nov2026-FUT",
   "lvl": 8872.0,
   "fvg_t": "2026-11-05 17:00:00",
   "chart": "charts/trade_20261106_1500_L.png",
   "shift": 0.0,
-  "unrealized_rs": 1560
+  "unrealized_rs": 770
  },
  "trades": [
   {
@@ -73,7 +73,7 @@
   "note": "single position, mini-lot costs; small sample"
  },
  "telegram": true,
- "eod_for": "2026-11-05",
+ "eod_for": "2026-11-06",
  "last_error": null,
  "contract_expiry": "2026-11-19 23:30:00",
  "sod": [
@@ -85,12 +85,12 @@
   {
    "label": "Latest 15m bar fresh (35 min or less during the session)",
    "ok": true,
-   "detail": "last bar 2026-11-06 17:30:00"
+   "detail": "last bar 2026-11-06 23:45:00"
   },
   {
    "label": "Front contract resolved, more than 3 days to expiry",
    "ok": true,
-   "detail": "CRUDEOILM-19Nov2026-FUT expires 2026-11-19 23:30:00 (13 d)"
+   "detail": "CRUDEOILM-19Nov2026-FUT expires 2026-11-19 23:30:00 (12 d)"
   },
   {
    "label": "Telegram channel set and last send OK",
