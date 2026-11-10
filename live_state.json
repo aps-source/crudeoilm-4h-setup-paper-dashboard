@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-10 23:15:32.670304",
- "last_tick": "2026-11-10 23:15:32.666766",
+ "generated": "2026-11-10 23:30:32.666823",
+ "last_tick": "2026-11-10 23:30:32.663994",
  "last_bar": "2026-11-09 23:45:00",
  "last_price": 8230.0,
  "contract": "CRUDEOILM-19Nov2026-FUT",
@@ -98,7 +98,7 @@
   {
    "label": "Front contract resolved, more than 3 days to expiry",
    "ok": true,
-   "detail": "CRUDEOILM-19Nov2026-FUT expires 2026-11-19 23:30:00 (9 d)"
+   "detail": "CRUDEOILM-19Nov2026-FUT expires 2026-11-19 23:30:00 (8 d)"
   },
   {
    "label": "Telegram channel set and last send OK",
