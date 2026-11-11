@@ -1,8 +1,8 @@
 {
- "generated": "2026-11-11 20:45:24.845602",
- "last_tick": "2026-11-11 20:45:24.836480",
- "last_bar": "2026-11-11 20:30:00",
- "last_price": 8225.0,
+ "generated": "2026-11-11 21:00:23.309460",
+ "last_tick": "2026-11-11 21:00:23.306740",
+ "last_bar": "2026-11-11 20:45:00",
+ "last_price": 8312.0,
  "contract": "CRUDEOILM-19Nov2026-FUT",
  "paper_start": "2026-10-20",
  "open": null,
@@ -93,7 +93,7 @@
   {
    "label": "Latest 15m bar fresh (35 min or less during the session)",
    "ok": true,
-   "detail": "last bar 2026-11-11 20:30:00"
+   "detail": "last bar 2026-11-11 20:45:00"
   },
   {
    "label": "Front contract resolved, more than 3 days to expiry",
