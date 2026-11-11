@@ -1,8 +1,8 @@
 {
- "generated": "2026-11-11 09:00:52.638038",
- "last_tick": "2026-11-11 09:00:50.963004",
- "last_bar": "2026-11-09 23:45:00",
- "last_price": 8230.0,
+ "generated": "2026-11-11 09:15:25.199494",
+ "last_tick": "2026-11-11 09:15:23.973759",
+ "last_bar": "2026-11-11 09:00:00",
+ "last_price": 8128.0,
  "contract": "CRUDEOILM-19Nov2026-FUT",
  "paper_start": "2026-10-20",
  "open": null,
@@ -82,18 +82,18 @@
  },
  "telegram": true,
  "eod_for": "2026-11-09",
- "last_error": "Dhan 15m fetch failed for 573423: {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}",
+ "last_error": null,
  "contract_expiry": "2026-11-19 23:30:00",
  "sod": [
   {
    "label": "Dhan data pull OK (token valid)",
-   "ok": false,
-   "detail": "Dhan 15m fetch failed for 573423: {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}"
+   "ok": true,
+   "detail": "last pull fine"
   },
   {
    "label": "Latest 15m bar fresh (35 min or less during the session)",
-   "ok": false,
-   "detail": "last bar 2026-11-09 23:45:00"
+   "ok": true,
+   "detail": "last bar 2026-11-11 09:00:00"
   },
   {
    "label": "Front contract resolved, more than 3 days to expiry",
