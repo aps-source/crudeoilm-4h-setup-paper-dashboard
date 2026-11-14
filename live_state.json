@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-14 00:00:26.570909",
- "last_tick": "2026-11-14 00:00:26.568661",
+ "generated": "2026-11-14 10:08:11.574255",
+ "last_tick": "2026-11-14 10:07:49.547477",
  "last_bar": "2026-11-13 23:45:00",
  "last_price": 8376.0,
  "contract": "CRUDEOILM-19Nov2026-FUT",
@@ -81,7 +81,7 @@
   "note": "single position, mini-lot costs; small sample"
  },
  "telegram": true,
- "eod_for": "2026-11-11",
+ "eod_for": "2026-11-13",
  "last_error": null,
  "contract_expiry": "2026-11-19 23:30:00",
  "sod": [
